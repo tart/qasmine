@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QWebFrame>
 #include <QVariant>
+#include <QWebElement>
 
 Qasmine::Qasmine() :
     QObject() 
@@ -33,6 +34,14 @@ void Qasmine::finishLoading(bool isFinished)
 
     qDebug() << f1result.toString();
 
+    QWebElement dom = frame->documentElement();
+
+    foreach (QWebElement humanData, dom.findAll(".description")) {
+        qDebug() << humanData.toPlainText();
+        break;
+    }
+
+    QApplication::instance()->exit(0);
 
 
 
