@@ -1,0 +1,6 @@
+src/Makefile
+src/main.o
+src/moc_qasmine.cpp
+src/moc_qasmine.o
+src/qasmine
+src/qasmine.o
