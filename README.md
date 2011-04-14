@@ -1,6 +1,6 @@
 # Qasmine
 
-A Qt application to run [Jasmine](http://pivotal.github.com/jasmine/)
+A Qt application to run [Jasmine](http://pivotal.github.com/jasmine/) from command line
 
 ## Prerequisites
 
