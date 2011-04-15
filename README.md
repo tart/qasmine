@@ -16,3 +16,8 @@ After cloning repository, type
 
     cd src && qmake && make 
     ./qasmine /where/jasmine/SpecRunner.html --verbose
+
+You can check number of errors, so you can write some other scripts (like git hooks) with such an example
+
+    ./qasmine /where/jasmine/SpecRunner.html > /dev/null ; echo $?
+
