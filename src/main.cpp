@@ -1,7 +1,7 @@
 /****************************************************************************
  ** Qasmine : Command line tool to run jasmine specs
  **
- ** License : This application licensed under terms of Apache 2.0 License
+ ** License : This application licensed under terms of LGPL
  ** You can check LICENSE file in this package
  **
  ** Contact : Osman Yüksel <yuxel@sonsuzdongu.com>
