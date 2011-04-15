@@ -14,3 +14,6 @@ SOURCES += main.cpp\
         qasmine.cpp
 
 HEADERS  += qasmine.h
+
+RESOURCES += \
+    js.qrc

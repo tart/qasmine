@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="qasmine.js">js/jasmine-qasmine.js</file>
+    </qresource>
+</RCC>
