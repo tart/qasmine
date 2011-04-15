@@ -15,4 +15,4 @@ Make sure you have Qt Development environment
 After cloning repository, type
 
     cd src && qmake && make 
-    ./qasmine /where/jasmine/SpecRunner.html
+    ./qasmine /where/jasmine/SpecRunner.html --verbose
