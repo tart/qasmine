@@ -20,8 +20,9 @@ cd src && qmake && make
 </code>
 
 You can check exit code to get number of errors, so you can write some other scripts (like git hooks) with such an example
-
-    ./qasmine /where/jasmine/SpecRunner.html > /dev/null ; echo $?
+<code>
+./qasmine /where/jasmine/SpecRunner.html > /dev/null ; echo $?
+</code>
 
 ## Exit codes
 * 255 : File not found or cannot be loaded
