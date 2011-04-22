@@ -14,13 +14,14 @@ Make sure you have Qt Development environment
 
 After cloning repository, type
 
-    cd src && qmake && make 
-    ./qasmine /where/jasmine/SpecRunner.html --verbose
+<code>
+cd src && qmake && make 
+./qasmine /where/jasmine/SpecRunner.html --verbose
+</code>
 
 You can check exit code to get number of errors, so you can write some other scripts (like git hooks) with such an example
 
     ./qasmine /where/jasmine/SpecRunner.html > /dev/null ; echo $?
-
 
 ## Exit codes
 * 255 : File not found or cannot be loaded
