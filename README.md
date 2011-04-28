@@ -24,6 +24,11 @@ You can check exit code to get number of errors, so you can write some other scr
 ./qasmine /where/jasmine/SpecRunner.html > /dev/null ; echo $?
 </pre>
 
+Those, who want to run qasmine in an environment which doesnt have X, they can use [xvfb-run](http://en.wikipedia.org/wiki/Xvfb)
+<pre>
+xvfb-run ./qasmine /where/jasmine/SpecRunner.html
+</pre>
+
 ## Exit codes
 * 255 : File not found or cannot be loaded
 * 0 : Success
