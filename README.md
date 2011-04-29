@@ -14,13 +14,20 @@ Make sure you have Qt Development environment
 
 After cloning repository, type
 
-    cd src && qmake && make 
-    ./qasmine /where/jasmine/SpecRunner.html --verbose
+<pre>
+cd src && qmake && make 
+./qasmine /where/jasmine/SpecRunner.html --verbose
+</pre>
 
 You can check exit code to get number of errors, so you can write some other scripts (like git hooks) with such an example
+<pre>
+./qasmine /where/jasmine/SpecRunner.html > /dev/null ; echo $?
+</pre>
 
-    ./qasmine /where/jasmine/SpecRunner.html > /dev/null ; echo $?
-
+Those, who want to run qasmine in an environment which doesnt have X, they can use [xvfb-run](http://en.wikipedia.org/wiki/Xvfb)
+<pre>
+xvfb-run ./qasmine /where/jasmine/SpecRunner.html
+</pre>
 
 ## Exit codes
 * 255 : File not found or cannot be loaded
