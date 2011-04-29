@@ -101,12 +101,13 @@ QString Qasmine::getQasmineJsCommand() {
     QString executeJasmineCmd = "var qasmineReporter = new jasmine.QasmineReporter();";
 
     if (verbose == true) {
-        executeJasmineCmd        += "qasmineReporter.setVerbose(true);";
+        executeJasmineCmd    += "qasmineReporter.setVerbose(true);";
     }
     else {
-        executeJasmineCmd        += "qasmineReporter.setVerbose(false);";
+        executeJasmineCmd    += "qasmineReporter.setVerbose(false);";
     }
 
+    executeJasmineCmd        += "qasmineReporter.setQasmine(qasmine);";
     executeJasmineCmd        += "jasmine.getEnv().addReporter(qasmineReporter);";
     executeJasmineCmd        += "jasmine.getEnv().execute();";
 
@@ -121,7 +122,7 @@ void Qasmine::finishLoading(bool isFinished)
 
     if (!isFinished) {
         this->log("ERROR: cannot load file : '" + fileName + "'");
-        QApplication::instance()->exit(-1);
+        exitConditionally(255);
     }
 
     QWebFrame *frame  = webView->page()->mainFrame();
