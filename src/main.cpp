@@ -32,5 +32,5 @@ int main(int argc, char *argv[])
         return a.exec();
     }
 
-    return -1;
+    return 255;
 }

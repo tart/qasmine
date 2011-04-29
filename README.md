@@ -22,7 +22,7 @@ You can check exit code to get number of errors, so you can write some other scr
     ./qasmine /where/jasmine/SpecRunner.html > /dev/null ; echo $?
 
 
-## Error codes
-* -1 : File not found or cannot be loaded
+## Exit codes
+* 255 : File not found or cannot be loaded
 * 0 : Success
 * > 0 : number of errors of specs

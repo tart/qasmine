@@ -8,7 +8,14 @@ jasmine.QasmineReporter = function(doc) {
 
     this.output = "";
 
-    this.logger = function() {};
+    this.qasmine = {};
+    this.qasmine.log = function (text) {
+	    console.log(text);
+    };
+    
+    this.qasmine.exitConditionally = function (code) {
+	    console.log('Should exit with code : ' + code);
+    };
 };
 
 
@@ -20,6 +27,10 @@ jasmine.QasmineReporter.prototype.includeJs = function (jsFile) {
     script.defer = true;
     document.getElementsByTagName('head').item(0).appendChild(script);
 };
+
+jasmine.QasmineReporter.prototype.setQasmine = function (qasmine) {
+    this.qasmine = qasmine;
+}
 
 
 jasmine.QasmineReporter.prototype.setVerbose = function (verbose) {
@@ -57,13 +68,19 @@ jasmine.QasmineReporter.prototype.reportRunnerResults = function(runner) {
             var successText = spec.success ? "OK" : "FAIL";
             var testResult = "(" + spec.total + "/" + spec.passed + ")"; 
             this.output += "\n" + successText + " | " + spec.name + testResult;
+	    
+            for(var x = 0, xx = spec.traceMessages.length; x < xx; x ++) {
+                this.output += "\n   >> " + spec.traceMessages[x];
+            }
         }
     }
+    
+    //console.log(this.output);
 
-    if(qasmine) {
-        qasmine.log(this.output);
-        qasmine.exitConditionally(failedSpecCount);
-    }
+    
+    this.qasmine.log(this.output);
+    this.qasmine.exitConditionally(failedSpecCount);
+    
 
     //console.log(this.output);
     //return this.output;
@@ -113,10 +130,22 @@ jasmine.QasmineReporter.prototype.reportSpecResults = function(spec) {
     var total = results.totalCount;
     var passed = results.passedCount;
     var failedCount = results.failedCount;
-
+    
+    var items = results.getItems();
+    
+    var traceMessages = [];
+    
+    for(var i in items) {
+	var item = items[i];
+	if(item.trace.message) {
+	  traceMessages.push(item.trace.name + " : " + item.trace.message);
+	}
+    }
+       
     var spec ={ name : this.tmpSpec,
                 total : total,
                 passed : passed,
+                traceMessages : traceMessages,
                 success : (failedCount == 0)
              };
 
