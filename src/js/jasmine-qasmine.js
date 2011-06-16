@@ -174,7 +174,7 @@ jasmine.QasmineReporter.prototype.reportSpecResults = function(spec) {
 };
 
 jasmine.QasmineReporter.prototype.log = function(text) {
-    this.logger(text);
+    //this.logger(text);
 };
 
 jasmine.QasmineReporter.prototype.getLocation = function() {
