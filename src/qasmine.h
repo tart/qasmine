@@ -33,14 +33,15 @@ public slots:
     void exitConditionally(int errorCount);
 
 protected slots:
-    void finishLoading(bool); 
+    void finishLoading(bool);
+    void loadStarted();
 
 protected:
 
 
 private:
-    QString getQasmineJs();
     QString getQasmineJsCommand();
+    QString readFileContent(QString fileName);
 
 };
 

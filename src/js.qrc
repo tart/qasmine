@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file alias="qasmine.js">js/jasmine-qasmine.js</file>
+        <file alias="overrideQasmine.js">js/override-jasmine.js</file>
     </qresource>
 </RCC>
