@@ -58,6 +58,7 @@ void Qasmine::setVerbose(bool isVerbose) {
 void Qasmine::run()
 {
     connect(webView, SIGNAL(loadFinished(bool)), this, SLOT(finishLoading(bool)));
+    connect(webView, SIGNAL(loadStarted()), this, SLOT(loadStarted()));
     webView->load(fileName);
 }
 
@@ -79,19 +80,22 @@ void Qasmine::log(const QString &text){
     std::cout << text.toAscii().data() << "\n";
 }
 
+
 /**
-  * Get qasmine.js which has its own Reporter
+  * Read file content
   */
-QString Qasmine::getQasmineJs() {
-    QString qasmineJs;
+QString Qasmine::readFileContent(QString fileName) {
+    QString fileContent;
     QFile file;
-    file.setFileName(":/qasmine.js");
+    file.setFileName(fileName);
     file.open(QIODevice::ReadOnly);
-    qasmineJs = file.readAll();
+    fileContent = file.readAll();
     file.close();
 
-    return qasmineJs;
+    return fileContent;
 }
+
+
 
 /**
   * Prepere the execute command
@@ -109,7 +113,7 @@ QString Qasmine::getQasmineJsCommand() {
 
     executeJasmineCmd        += "qasmineReporter.setQasmine(qasmine);";
     executeJasmineCmd        += "jasmine.getEnv().addReporter(qasmineReporter);";
-    executeJasmineCmd        += "jasmine.getEnv().execute();";
+    executeJasmineCmd        += "jasmine.getEnv().executeQasmine();";
 
     return executeJasmineCmd;
 }
@@ -119,7 +123,6 @@ QString Qasmine::getQasmineJsCommand() {
   */
 void Qasmine::finishLoading(bool isFinished) 
 {
-
     if (!isFinished) {
         this->log("ERROR: cannot load file : '" + fileName + "'");
         exitConditionally(255);
@@ -127,7 +130,18 @@ void Qasmine::finishLoading(bool isFinished)
 
     QWebFrame *frame  = webView->page()->mainFrame();
 
-    frame->evaluateJavaScript(getQasmineJs());
+    frame->evaluateJavaScript(readFileContent(":/qasmine.js"));
     frame->addToJavaScriptWindowObject(QString("qasmine"), this);
     frame->evaluateJavaScript(getQasmineJsCommand());
+}
+
+
+/**
+  * Before load started, override jasmine
+  */
+void Qasmine::loadStarted()
+{
+    QWebFrame *frame  = webView->page()->mainFrame();
+
+    frame->evaluateJavaScript(readFileContent(":/override-jasmine.js"));
 }
