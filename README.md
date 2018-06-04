@@ -1,11 +1,11 @@
 # Qasmine
 
-A Qt application to run [Jasmine](http://pivotal.github.com/jasmine/) from command line
+A Qt application to run [Jasmine](https://jasmine.github.io/) from command line
 
 ## Prerequisites
 
 * [Qt >= 4.7](http://qt.nokia.com/) : Qt Library with Webkit module
-* [jasmine](http://pivotal.github.com/jasmine/) : Jasmine BDD
+* [jasmine](https://jasmine.github.io/) : Jasmine BDD
 
 
 ## How to compile
